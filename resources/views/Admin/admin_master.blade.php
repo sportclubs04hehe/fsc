@@ -7,6 +7,9 @@
     <title>FSC Company</title>
     <!-- plugins:css -->
 
+    <meta name="csrf-token" content="{{ csrf_token() }}" >
+    <!-- plugins:css -->
+
     <link rel="stylesheet" href="{{asset('Backend/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('Backend/assets/vendors/css/vendor.bundle.base.css')}}">
     <!-- endinject -->
@@ -19,9 +22,26 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
+
+
+
     <link rel="stylesheet" href="{{asset('Backend/assets/css/style.css')}}">
     <!-- End layout styles -->
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
+
+
+
+    <!-- include libraries(jQuery, bootstrap) For Summer Editor  -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+
     <link rel="shortcut icon" href="{{asset('Backend/assets/images/favicon.png')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
 <div class="container-scroller">
@@ -39,6 +59,9 @@
            @include('Admin.Body.footer')
             <!-- partial -->
         </div>
+        </div>
+        </div>
+
         <!-- main-panel ends -->
 
 
@@ -59,8 +82,12 @@
 <script src="{{asset('Backend/assets/js/hoverable-collapse.js')}}"></script>
 <script src="{{asset('Backend/assets/js/misc.js')}}"></script>
 <script src="{{asset('Backend/assets/js/settings.js')}}"></script>
+<script src="{{asset('Backend/assets/js/todolist.js')}}"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
 <script src="{{asset('Backend/assets/js/dashboard.js')}}"></script>
-<script type="text/javascript" src="{{asset('Backend/assets/js/todolist.js')}}"></script>
+<!-- End custom js for this page -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script>
     @if(Session::has('message'))

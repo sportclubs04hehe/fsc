@@ -36,7 +36,7 @@ class GoogleController extends Controller
 
                 Auth::login($finduser);
 
-                return redirect()->intended('/');
+                return redirect()->intended('email/verify');
 
             }else{
                 $newUser = User::create([
@@ -48,7 +48,7 @@ class GoogleController extends Controller
 
                 Auth::login($newUser);
 
-                return redirect()->intended('/');
+                return redirect()->intended('email/verify');
             }
 
         } catch (Exception $e) {
