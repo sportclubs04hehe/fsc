@@ -1,6 +1,9 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="index.html"><span class="text-success display-4">FSC COMPANY</span></a>
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top ">
+        <a class="sidebar-brand brand-logo " href="index.html"><span class="text-success display-4">FSC COMPANY</span></a>
+        <a class="sidebar-brand brand-logo-mini" href="index.html">
+            <span class="text-success display-4">FSC</span>
+           </a>
     </div>
     <ul class="nav">
         <li class="nav-item profile">
@@ -11,8 +14,8 @@
                         <span class="count bg-success"></span>
                     </div>
                     <div class="profile-name">
-                        <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-                        <span>Gold Member</span>
+                        <h5 class="mb-0 font-weight-normal">{{\Illuminate\Support\Facades\Auth::user()->name}}</h5>
+                        <span>{{\Illuminate\Support\Facades\Auth::user()->email}}</span>
                     </div>
                 </div>
                 <a href="#" id="profile-dropdown" data-toggle="dropdown"><i style="color: white" class="fa-solid fa-ellipsis-vertical"></i></a>
@@ -68,15 +71,14 @@
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
               </span>
-                <span class="menu-title">Category</span>
-                 <i class="fa-sharp fa-solid fa-caret-down ml-5"></i>
+                <span class="menu-title" >Danh mục </span>
+                 <i class="fa-sharp fa-solid fa-caret-down ml-3"></i>
 
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/user/categories/index')}}">Buttons</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('Admin/category/index')}}">Danh mục chính</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Danh mục phụ</a></li>
                 </ul>
             </div>
         </li>

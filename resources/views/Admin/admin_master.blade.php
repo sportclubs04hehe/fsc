@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>FSC Company</title>
+    <title>@yield('title')</title>
     <!-- plugins:css -->
 
     <meta name="csrf-token" content="{{ csrf_token() }}" >
@@ -31,7 +31,22 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
 
+    <style>
+        .toast-close-button {
+            top: 220px !important;
+        }
 
+        .toast-top-center {
+            top: 220px !important;
+        }
+
+        .toast-top-left {
+            top: 220px !important;
+        }
+        .toast-top-right {
+            top: 220px !important;
+        }
+    </style>
 
     <!-- include libraries(jQuery, bootstrap) For Summer Editor  -->
 
@@ -98,6 +113,13 @@
             break;
 
         case 'success':
+            toastr.options =
+                {
+                    "closeButton" : true,
+                    "progressBar" : true,
+                    "showDuration": "300000",
+                    "hideDuration": "1000000",
+                }
             toastr.success(" {{ Session::get('message') }} ");
             break;
 

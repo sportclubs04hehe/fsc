@@ -156,7 +156,7 @@
                     <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                         <div class="navbar-profile">
                             <img class="img-xs rounded-circle" src="{{asset('Backend/assets/images/faces/face15.jpg')}}" alt="">
-                            <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                            <p class="mb-0 d-none d-sm-block navbar-profile-name">{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
                             <i class="fa-solid fa-caret-down ml-2"></i>
                         </div>
                     </a>
@@ -198,7 +198,7 @@
                 </li>
             </ul>
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                <span class="mdi mdi-format-line-spacing"></span>
+                <span class="fa-solid fa-bars"></span>
             </button>
         </div>
     </nav>
