@@ -9,9 +9,9 @@ class Categorie extends Model
 {
     use HasFactory;
 
-    protected $fillable= ["nameC_en","nameV_vie","status"];
+    protected $fillable= ["nameC_en","nameV_vie","status","nguoitao","datetime"];
 
-    public function Post(){
-//        return $this->belongsToMany();
+    public function SubCategory(){
+        return $this->belongsToMany(SubCategory::class);
     }
 }

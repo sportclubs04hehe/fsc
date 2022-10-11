@@ -42,4 +42,14 @@ Route::prefix('Admin')->middleware('auth')->name('category.')->group(function ()
     Route::get('/category/delete/{id}',[\App\Http\Controllers\Backend\CategoryController::class,'delete'])->name('delete');
 });
 
+//SubCategory
+Route::prefix('Admin')->middleware('auth')->name('subcategory.')->group(function (){
+    Route::get('/subcategory/index',[\App\Http\Controllers\Backend\SubCategoryController::class,'index']);
+    Route::get('/subcategory/create',[\App\Http\Controllers\Backend\SubCategoryController::class,'create']);
+    Route::post('/subcategory/store',[\App\Http\Controllers\Backend\SubCategoryController::class,'store'])->name('store');
+    Route::get('/subcategory/edit/{id}',[\App\Http\Controllers\Backend\SubCategoryController::class,'edit'])->name('edit');
+    Route::post('/subcategory/update/{id}',[\App\Http\Controllers\Backend\SubCategoryController::class,'update'])->name('update');
+    Route::get('/subcategory/delete/{id}',[\App\Http\Controllers\Backend\SubCategoryController::class,'delete'])->name('delete');
+});
+
 

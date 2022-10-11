@@ -1,5 +1,5 @@
 @extends('Admin.admin_master')
-@section('title','Categories Fsc')
+@section('title','Danh mục con Fsc')
 @section('admin')
     <div class="content-wrapper">
         <div class="row">
@@ -32,18 +32,17 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Trang danh mục </h4>
+                    <h4 class="card-title">Trang danh mục con </h4>
 
                     <form action="#" style=" width: 250px; position: absolute; right: 20px; margin-top: -40px">
                         <input type="text" class=" form-search" name="keyword" value="{{request()->input('keyword')}}" placeholder="Tìm kiếm...">
-{{--                        <input type="submit" style="width: 88px" name="btn-search" value="Search" class="btn btn-primary">--}}
                         <button type="submit" class="bg-primary" value="btn-search" style="width: 40px; height: 34px">
                             <i class="fa-solid fa-magnifying-glass text-light"></i>
                         </button>
                     </form>
 
                     <div class="template-demo">
-                        <a href="{{url('Admin/category/create')}}"><button type="button" class="btn btn-primary btn-fw" style="float: right;">Thêm danh mục</button></a>
+                        <a href="{{url('Admin/subcategory/create')}}"><button type="button" class="btn btn-primary btn-fw" style="float: right;">Thêm danh mục con</button></a>
                     </div>
 
 
@@ -52,8 +51,8 @@
                             <thead>
                             <tr>
                                 <th> # </th>
-                                <th>Danh mục English </th>
-                                <th>Danh mục Vietnamese </th>
+                                <th>Danh mục con English </th>
+                                <th>Danh mục con Vietnamese </th>
                                 <th>Trạng thái</th>
                                 <th>Người tạo</th>
                                 <th>Quản trị</th>
@@ -62,28 +61,28 @@
                             </thead>
 
                             <tbody>
-                            @if($category->total()>0)
-                            @php($i = 1)
-                            @foreach($category as $row)
-                                <tr>
-                                    <td>{{$i++}}</td>
-                                    <td width="20%">{{$row->nameC_en}}</td>
-                                    <td>{{$row->nameV_vie}}</td>
-                                    @if($row->status==1)
-                                        <td ><span class="btn btn-success btn-sm" style="cursor: default">Hiển thị</span></td>
-                                    @else
-                                        <td ><span class="btn btn-danger btn-sm " style="cursor: default">Không hiển thị</span></td>
-                                    @endif
+                            @if($subcategory->total()>0)
+                                @php($i = 1)
+                                @foreach($subcategory as $row)
+                                    <tr>
+                                        <td>{{$i++}}</td>
+                                        <td>{{$row->subC_en}}</td>
+                                        <td>{{$row->subV_vie}}</td>
+                                        @if($row->status==1)
+                                            <td ><span class="btn btn-success btn-sm" style="cursor: default">Hiển thị</span></td>
+                                        @else
+                                            <td ><span class="btn btn-danger btn-sm " style="cursor: default">Không hiển thị</span></td>
+                                        @endif
 
 
-                                    <td>{{$row->nguoitao}} <br> <small>tạo ngày {{$row->datetime}}</small></td>
-                                    <td>
-                                        <a href="{{route('category.edit',$row->id)}}" class="btn btn-info">Sửa</a>
-                                        <a href="{{route('category.delete', $row->id)}}" onclick="return confirm('Bạn chắc chứ?')" class="btn btn-danger">Xóa</a>
-                                        <a href="" class="btn btn-primary">Danh mục con</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                        <td>{{$row->nguoitao}} <br> <small>  @if($row->ngaysua==null) đã tạo ngày {{$row->datetime}}  @else đã cập nhật ngày {{$row->ngaysua}} @endif </small></td>
+                                        <td>
+                                            <a href="{{route('subcategory.edit', $row->id)}}" class="btn btn-info">Sửa</a>
+                                            <a href="" onclick="return confirm('Bạn chắc chứ?')" class="btn btn-danger">Xóa</a>
+                                            <a href=""  class="btn btn-primary">Danh mục phụ con</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @else
                                 <tr class="text-danger">
                                     <td colspan="9" class="text-center pt-3">Không tìm thấy bản ghi nào</td>
@@ -92,7 +91,7 @@
                             </tbody>
 
                         </table>
-                        {{$category->links('pagination::bootstrap-4')}}
+                        {{$subcategory->links('pagination::bootstrap-4')}}
                     </div>
                 </div>
             </div>

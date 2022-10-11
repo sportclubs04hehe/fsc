@@ -33,18 +33,18 @@
 
     <style>
         .toast-close-button {
-            top: 220px !important;
+            top: 180px !important;
         }
 
         .toast-top-center {
-            top: 220px !important;
+            top: 180px !important;
         }
 
         .toast-top-left {
-            top: 220px !important;
+            top: 180px !important;
         }
         .toast-top-right {
-            top: 220px !important;
+            top: 180px !important;
         }
     </style>
 

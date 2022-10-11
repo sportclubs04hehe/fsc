@@ -69,7 +69,7 @@
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
+                <i class="fa-solid fa-hippo text-danger"></i>
               </span>
                 <span class="menu-title" >Danh mục </span>
                  <i class="fa-sharp fa-solid fa-caret-down ml-3"></i>
@@ -78,7 +78,7 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{url('Admin/category/index')}}">Danh mục chính</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Danh mục phụ</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('Admin/subcategory/index')}}">Danh mục phụ</a></li>
                 </ul>
             </div>
         </li>

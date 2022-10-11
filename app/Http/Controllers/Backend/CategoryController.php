@@ -5,12 +5,29 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
     //
-    function index(){
-        $category= Categorie::paginate(5);
+    function index(Request $request){
+
+
+        $time= Carbon::now('Asia/Ho_Chi_Minh');
+//        return $time->format('l jS \\of F Y h:i:s A');
+//        return $time->toFormattedDateString();
+//        return $time->toDayDateTimeString();
+//        return $time->toDateTimeString();
+        $keyword="";
+
+//        return $request->input();
+
+        if ($request->input('keyword')!= null){
+            $keyword= $request->input('keyword');
+        }
+        $category= DB::table('categories')->where('nameC_en','like',"%{$keyword}%")->orWhere('nameV_vie','like',"%{$keyword}%")->orderBy('id','desc')->paginate(5);
         return view('Backend.Category.index', compact('category'));
     }
 
@@ -20,28 +37,32 @@ class CategoryController extends Controller
 
     function store(Request $request){
         $request->validate([
-           'nameC_en'=>'required|max:255|unique:categories',
-           'nameV_vie'=>'required|max:255|unique:categories',
+           'nameC_en'=>'required|max:255|unique:categories|regex:/^(?!(.*\d){5})[A-Za-z_@.#&+-_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ,.!?\d]+$/',
+           'nameV_vie'=>'required|max:255|unique:categories|regex:/^(?!(.*\d){5})[A-Za-z_@.#&+-_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ,.!?\d]+$/',
 //            'status'=>'accepted',
         ],[
-            'required'=>'Trường này không được để trống',
-            'unique'=>'Tên danh mục đã tồn tại',
+            'required'=>'Trường :attribute không được để trống',
+            'unique'=>'Tên danh mục :attribute đã tồn tại',
+            'regex'=> 'Kí tự số không được tồn tại quá 4 lần trong trường'
 
         ],[
             'nameC_en'=>'Danh Mục English',
             'nameV_vie'=>'Danh Mục Vietnamese',
         ]);
-
+        $time= Carbon::now('Asia/Ho_Chi_Minh');
         $data= array();
         $data['nameC_en']= $request->nameC_en;
         $data['nameV_vie']= $request->nameV_vie;
         $data['status']= $request->status;
+        $data['datetime']= $time->toDateTimeString();
+        $data['nguoitao']= Auth::user()->name;
 
         Categorie::create($data);
         $notification = array(
             'message' => 'Tạo danh mục thành công',
             'alert-type' => 'success'
         );
+
 
         return redirect('Admin/category/index')->with($notification);
     }
@@ -53,12 +74,13 @@ class CategoryController extends Controller
 
     function update(Request $request,$id){
         $request->validate([
-            'nameC_en'=>'required|max:255|unique:categories',
-            'nameV_vie'=>'required|max:255|unique:categories',
+            'nameC_en'=>'required|max:255|regex:/^(?!(.*\d){5})[A-Za-z_@.#&+-_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ,.!?\d]+$/',
+            'nameV_vie'=>'required|max:255|regex:/^(?!(.*\d){5})[A-Za-z_@.#&+-_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ,.!?\d]+$/',
 //            'status'=>'accepted',
         ],[
-            'required'=>'Trường này không được để trống',
-            'unique'=>'Tên danh mục đã tồn tại',
+            'required'=>'Trường :attribute này không được để trống',
+            'unique'=>'Tên danh mục :attribute đã tồn tại',
+            'regex'=> 'Kí tự số không được tồn tại quá 4 lần trong trường'
         ],[
             'nameC_en'=>'Danh Mục English',
             'nameV_vie'=>'Danh Mục Vietnamese',

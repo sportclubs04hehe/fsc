@@ -1,5 +1,5 @@
 @extends('Admin.admin_master')
-@section('title','Create Category')
+@section('title','Tạo danh mục con')
 
 @section('admin')
 
@@ -32,23 +32,36 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Thêm danh mục</h4>
+                    <h4 class="card-title">Thêm danh mục con</h4>
 
-                    <form class="forms-sample" method="POST" action="{{route('category.store')}}">
+                    <form class="forms-sample" method="POST" action="{{route('subcategory.store')}}">
                         @csrf
                         <div class="form-group">
-                            <label for="nameC_en">Danh mục English <b style="color: red">*</b></label>
-                            <input type="text" class="form-control" name="nameC_en" value="{{old('nameC_en')}}"  placeholder="Danh mục English">
-                            @error('nameC_en')
+                            <label for="subC_en">Danh mục English <b style="color: red">*</b></label>
+                            <input type="text" class="form-control" id="subC_en" name="subC_en" value="{{old('subC_en')}}"  placeholder="Danh mục English">
+                            @error('subC_en')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="nameV_vie">Danh mục Vietnamese <b style="color: red">*</b></label>
-                            <input type="text" class="form-control" name="nameV_vie" id="nameV_vie" value="{{old('nameV_vie')}}"  placeholder="Danh mục Vietnamese">
-                            @error('nameV_vie')
+                            <label for="subV_vie">Danh mục Vietnamese <b style="color: red">*</b></label>
+                            <input type="text" class="form-control" name="subV_vie" id="subV_vie" value="{{old('subV_vie')}}"  placeholder="Danh mục Vietnamese">
+                            @error('subV_vie')
                             <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="category_id">Danh mục cha <b style="color: red">*</b></label>
+                            <select id="category_id" class="form-control" name="category_id">
+                                <option selected="selected" value="0">Chọn</option>
+                                @foreach($category as $categories)
+                                    <option value="{{$categories->id}}" id="category_id" @if($categories->id==old('category_id')) selected="selected" @endif>{{$categories->nameC_en}} | {{$categories->nameV_vie}}</option>
+                                @endforeach
+                            </select>
+
+                            @error('category_id')
+                            <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
                         <div class="form-check">
@@ -57,7 +70,7 @@
                                 Trạng thái hiển thị <small class="text-muted">(Vui lòng chọn nếu anh/chị muốn danh mục hiển thị lên menu)</small>
                             </label>
                         </div>
-                        <a href="{{url('Admin/category/index')}}" class="btn btn-danger mr-2 mt-3" onclick="return confirm('Bạn chắc chứ? Mọi thay đổi của bạn sẽ không được lưu lại!')"><i class="fa-solid fa-backward-step"></i> Trở lại</a>
+                        <a href="{{url('Admin/subcategory/index')}}" class="btn btn-danger mr-2 mt-3" onclick="return confirm('Bạn chắc chứ? Mọi thay đổi của bạn sẽ không được lưu lại!')"><i class="fa-solid fa-backward-step"></i> Trở lại</a>
                         <button type="submit" class="btn btn-primary mr-2 mt-3">Thêm mới</button>
 
                     </form>
