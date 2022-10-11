@@ -10,9 +10,9 @@ class SubCategory extends Model
     use HasFactory;
 
     protected $table="subcategory";
-    protected $fillable=["subC_en","subV_vie","nguoitao","datetime","category_id","status"];
+    protected $fillable=["subC_en","subV_vie","nguoitao","ngaysua","datetime","categorie_id","status"];
 
     public function Categories(){
-        return $this->hasOne(Categorie::class);
+        return $this->belongsTo(Categorie::class);
     }
 }

@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('nameV_vie');
             $table->string('nguoitao',255);
             $table->string('datetime', 255)->nullable();
+            $table->string('ngaysua', 255)->nullable();
             $table->integer('status')->nullable()->default(0);
             $table->timestamps();
         });

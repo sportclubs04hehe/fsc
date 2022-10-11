@@ -28,7 +28,7 @@ class SubCategoryController extends Controller
         if ($request->input('keyword')!= null){
             $keyword= $request->input('keyword');
         }
-        $subcategory= DB::table('subcategory')->where('subC_en','like',"%{$keyword}%")->orWhere('subC_en','like',"%{$keyword}%")->orderBy('id','desc')->paginate(5);
+        $subcategory= DB::table('subcategory')->where('subC_en','like',"%{$keyword}%")->orWhere('subV_vie','like',"%{$keyword}%")->orderBy('id','desc')->paginate(5);
         return view('Backend.SubCategory.index', compact('subcategory'));
     }
 
@@ -42,7 +42,7 @@ class SubCategoryController extends Controller
 
             'subC_en'=>"required|max:255|unique:subcategory|regex:/^(?!(.*\d){5})[A-Za-z_@.#&+-_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ,.!?\d]+$/",
             'subV_vie'=>"required|max:255|unique:subcategory|regex:/^(?!(.*\d){5})[A-Za-z_@.#&+-_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ,.!?\d]+$/",
-            'category_id'=> 'required|not_in:0',
+            'categorie_id'=> 'required|not_in:0',
         ],[
 
             'required'=>'Trường :attribute không được để trống',
@@ -53,7 +53,7 @@ class SubCategoryController extends Controller
         ],[
             'subC_en'=>'Danh Mục Con English',
             'subV_vie'=>'Danh Mục Con Vietnamese',
-            'category_id'=>'Danh mục cha'
+            'categorie_id'=>'Danh mục cha'
         ]);
         $time= Carbon::now('Asia/Ho_Chi_Minh');
         $data= array();
@@ -62,7 +62,7 @@ class SubCategoryController extends Controller
         $data['nguoitao']= Auth::user()->name;
         $data['datetime']= $time->toDateTimeString();
         $data['status']= $request->input('status');
-        $data['category_id']= $request->category_id;
+        $data['categorie_id']= $request->categorie_id;
 
 
         SubCategory::create($data);
@@ -85,9 +85,9 @@ class SubCategoryController extends Controller
     function update(Request $request,$id){
         $request->validate([
 
-            'subC_en'=>'required|max:255|regex:/^(?!(.*\d){5})[A-Za-z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ,.!?\d]+$/',
-            'subV_vie'=>'required|max:255|regex:/^(?!(.*\d){5})[A-Za-z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ,.!?\d]+$/',
-            'category_id'=> 'required|not_in:0',
+            'subC_en'=>'required|max:255|regex:/^(?!(.*\d){5})[A-Za-z_@.#&+-_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ,.!?\d]+$/',
+            'subV_vie'=>'required|max:255|regex:/^(?!(.*\d){5})[A-Za-z_@.#&+-_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ,.!?\d]+$/',
+            'categorie_id'=> 'required|not_in:0',
         ],[
 
             'required'=>'Trường :attribute không được để trống',
@@ -97,7 +97,7 @@ class SubCategoryController extends Controller
         ],[
             'subC_en'=>'Danh Mục Con English',
             'subV_vie'=>'Danh Mục Con Vietnamese',
-            'category_id'=>'Danh mục cha'
+            'categorie_id'=>'Danh mục cha'
         ]);
 
         $time= Carbon::now('Asia/Ho_Chi_Minh');
@@ -107,7 +107,7 @@ class SubCategoryController extends Controller
         $data['nguoitao']= Auth::user()->name;
         $data['ngaysua']= $time->toDateTimeString();
         $data['status']= $request->input('status');
-        $data['category_id']= $request->category_id;
+        $data['categorie_id']= $request->categorie_id;
 
         SubCategory::where('id',$id)->update($data);
 
@@ -119,19 +119,15 @@ class SubCategoryController extends Controller
         return redirect('Admin/subcategory/index')->with($notification);
     }
 
-//    function delete($id){
-//        $category= Categorie::find($id);
-//        if($category){
-//            $category->delete();
-//        }else{
-//            abort(403);
-//        }
-//
-//        $notification = array(
-//            'message' => 'Xóa danh mục thành công!',
-//            'alert-type' => 'error'
-//        );
-//
-//        return redirect('Admin/category/index')->with($notification);
-//    }
+    function delete($id){
+        $category= SubCategory::findOrFail($id);
+        $category->delete();
+
+        $notification = array(
+            'message' => 'Xóa danh mục thành công!',
+            'alert-type' => 'error'
+        );
+
+        return redirect('Admin/subcategory/index')->with($notification);
+    }
 }

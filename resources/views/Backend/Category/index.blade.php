@@ -1,5 +1,5 @@
 @extends('Admin.admin_master')
-@section('title','Categories Fsc')
+@section('title','Danh mục')
 @section('admin')
     <div class="content-wrapper">
         <div class="row">
@@ -76,11 +76,13 @@
                                     @endif
 
 
-                                    <td>{{$row->nguoitao}} <br> <small>tạo ngày {{$row->datetime}}</small></td>
+                                    <td>{{$row->nguoitao}} <br> <small> @if($row->ngaysua!=null) đã sửa ngày  {{$row->ngaysua}} @else tạo ngày {{$row->datetime}}  @endif</small></td>
                                     <td>
-                                        <a href="{{route('category.edit',$row->id)}}" class="btn btn-info">Sửa</a>
-                                        <a href="{{route('category.delete', $row->id)}}" onclick="return confirm('Bạn chắc chứ?')" class="btn btn-danger">Xóa</a>
-                                        <a href="" class="btn btn-primary">Danh mục con</a>
+                                       @if($row->nameC_en!="bot")
+                                            <a href="{{route('category.edit',$row->id)}}" class="btn btn-info">Sửa</a>
+                                            <a href="{{route('category.delete', $row->id)}}" onclick="return confirm('Bạn chắc chứ?')" class="btn btn-danger">Xóa</a>
+                                        @endif
+                                        <a href="{{route('category.danhmuccon', $row->id)}}" class="btn btn-primary">Danh mục con</a>
                                     </td>
                                 </tr>
                             @endforeach

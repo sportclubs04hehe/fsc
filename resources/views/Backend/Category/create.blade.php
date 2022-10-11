@@ -1,5 +1,5 @@
 @extends('Admin.admin_master')
-@section('title','Create Category')
+@section('title','Tạo danh mục cha')
 
 @section('admin')
 

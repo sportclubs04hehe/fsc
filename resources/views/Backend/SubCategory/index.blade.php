@@ -75,11 +75,11 @@
                                         @endif
 
 
-                                        <td>{{$row->nguoitao}} <br> <small>  @if($row->ngaysua==null) đã tạo ngày {{$row->datetime}}  @else đã cập nhật ngày {{$row->ngaysua}} @endif </small></td>
+                                        <td>{{$row->nguoitao}} <br> <small>  @if($row->ngaysua==null) đã tạo ngày {{$row->datetime}}  @else đã sửa ngày {{$row->ngaysua}} @endif </small></td>
                                         <td>
                                             <a href="{{route('subcategory.edit', $row->id)}}" class="btn btn-info">Sửa</a>
-                                            <a href="" onclick="return confirm('Bạn chắc chứ?')" class="btn btn-danger">Xóa</a>
-                                            <a href=""  class="btn btn-primary">Danh mục phụ con</a>
+                                            <a href="{{route('subcategory.delete', $row->id)}}" onclick="return confirm('Bạn chắc chứ?')" class="btn btn-danger">Xóa</a>
+                                            <a href=""  class="btn btn-primary">Danh mục cha</a>
                                         </td>
                                     </tr>
                                 @endforeach

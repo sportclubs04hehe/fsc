@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categorie;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -86,9 +87,11 @@ class CategoryController extends Controller
             'nameV_vie'=>'Danh Mục Vietnamese',
         ]);
 
+        $time= Carbon::now('Asia/Ho_Chi_Minh');
         $data= array();
         $data['nameC_en']= $request->nameC_en;
         $data['nameV_vie']= $request->nameV_vie;
+        $data['ngaysua']= $time->toDateTimeString();
         $data['status']= $request->status;
 
         Categorie::where('id',$id)->update($data);
@@ -102,11 +105,17 @@ class CategoryController extends Controller
     }
 
     function delete($id){
-        $category= Categorie::find($id);
-        if($category){
+        $category= Categorie::findOrFail($id);
+
+        $subcategory= $category->danhmuccon;
+
+        if(isset($subcategory)){
+            $bot= DB::table('categories')->where('nameC_en','=','bot')->get()->first();
+            foreach ($subcategory as $sub){
+                $sub->categorie_id  = $bot->id;
+                $sub->save();
+            }
             $category->delete();
-        }else{
-            abort(403);
         }
 
         $notification = array(
@@ -116,4 +125,6 @@ class CategoryController extends Controller
 
         return redirect('Admin/category/index')->with($notification);
     }
+
+
 }

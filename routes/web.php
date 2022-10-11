@@ -40,6 +40,7 @@ Route::prefix('Admin')->middleware('auth')->name('category.')->group(function ()
     Route::get('/category/edit/{id}',[\App\Http\Controllers\Backend\CategoryController::class,'edit'])->name('edit');
     Route::post('/category/update/{id}',[\App\Http\Controllers\Backend\CategoryController::class,'update'])->name('update');
     Route::get('/category/delete/{id}',[\App\Http\Controllers\Backend\CategoryController::class,'delete'])->name('delete');
+
 });
 
 //SubCategory
@@ -50,6 +51,7 @@ Route::prefix('Admin')->middleware('auth')->name('subcategory.')->group(function
     Route::get('/subcategory/edit/{id}',[\App\Http\Controllers\Backend\SubCategoryController::class,'edit'])->name('edit');
     Route::post('/subcategory/update/{id}',[\App\Http\Controllers\Backend\SubCategoryController::class,'update'])->name('update');
     Route::get('/subcategory/delete/{id}',[\App\Http\Controllers\Backend\SubCategoryController::class,'delete'])->name('delete');
+
 });
 
 

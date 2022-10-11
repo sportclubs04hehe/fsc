@@ -9,7 +9,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}" >
     <!-- plugins:css -->
-
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3845/3845763.png" type="image/x-icon" >
     <link rel="stylesheet" href="{{asset('Backend/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('Backend/assets/vendors/css/vendor.bundle.base.css')}}">
     <!-- endinject -->
@@ -54,7 +54,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 
 
-    <link rel="shortcut icon" href="{{asset('Backend/assets/images/favicon.png')}}" />
+{{--    <link rel="shortcut icon" href="{{asset('image/icon.png')}}" />--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>

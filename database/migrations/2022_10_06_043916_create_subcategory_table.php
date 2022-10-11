@@ -18,9 +18,9 @@ class CreateSubcategoryTable extends Migration
             $table->string('subC_en',255);
             $table->string('subV_vie',255);
             $table->string('nguoitao',255);
-            $table->string('ngaysua',255);
+            $table->string('ngaysua',255)->nullable();
             $table->string('datetime', 255)->nullable();
-            $table->integer('status',false)->default(0);
+            $table->integer('status',false)->default(0)->nullable();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();

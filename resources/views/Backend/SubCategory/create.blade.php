@@ -52,15 +52,17 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="category_id">Danh mục cha <b style="color: red">*</b></label>
-                            <select id="category_id" class="form-control" name="category_id">
+                            <label for="categorie_id">Danh mục cha <b style="color: red">*</b></label>
+                            <select id="categorie_id" class="form-control" name="categorie_id">
                                 <option selected="selected" value="0">Chọn</option>
                                 @foreach($category as $categories)
-                                    <option value="{{$categories->id}}" id="category_id" @if($categories->id==old('category_id')) selected="selected" @endif>{{$categories->nameC_en}} | {{$categories->nameV_vie}}</option>
+                                    @if($categories->nameC_en!= "bot")
+                                    <option value="{{$categories->id}}" id="categorie_id" @if($categories->id==old('categorie_id')) selected="selected" @endif>{{$categories->nameC_en}} | {{$categories->nameV_vie}}</option>
+                                    @endif
                                 @endforeach
                             </select>
 
-                            @error('category_id')
+                            @error('categorie_id')
                             <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
